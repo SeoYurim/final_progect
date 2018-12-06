@@ -17,6 +17,11 @@ block content
         dd.col-sm-9
           img.img-fluid.rounded-circle(src= user.facebook.photo)
 
+      if user.naver.id
+        dt.col-sm-3 naver
+        dd.col-sm-9
+          img.img-fluid.rounded-circle(src= user.naver.photo)
+
     hr
     p
       a.btn.btn-outline-secondary(href='/users/') List

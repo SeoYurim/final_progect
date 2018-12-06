@@ -4,7 +4,7 @@ block content
   .container
     .clearfix
       form.form-signin(action='/signin', method='POST')
-        h3.form-signin-heading Signin
+        h2.form-signin-heading Signin
         label.sr-only(for='email') Email address
         input(
           type='email', id='email', name='email', class='form-control', 
@@ -28,5 +28,5 @@ block content
 
         div.sub 
           | 아직 회원이 아니신가요?
-          a(href='/users/new') Signup
+          a(href='/users/new')        Signup
           
