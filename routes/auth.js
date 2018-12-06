@@ -22,7 +22,21 @@ module.exports = (app, passport) => {
         res.redirect('/');
       }
     );
+
+    app.get('/auth/naver',
+      passport.authenticate('naver', { scope : 'email' })
+    );
   
+    app.get('/auth/naver/callback',
+      passport.authenticate('naver', {
+        failureRedirect : '/signin',
+        failureFlash : true // allow flash messages
+      }), (req, res, next) => {
+        req.flash('success', 'Welcome!');
+        res.redirect('/');
+      }
+    );
+
     app.get('/signout', (req, res) => {
       req.logout();
       req.flash('success', 'Successfully signed out');
