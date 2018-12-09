@@ -1,0 +1,36 @@
+extends ../layout
+
+block content
+  .container
+    h1.main-title= contest.title
+
+    .contest.show
+      include _contest
+
+      .buttons
+        if currentUser
+          button.btn.btn-primary.contest-like-btn(data-id=contest.id) 
+            span.for-loading #[i.fa.fa-spin.fa-refresh] Loading
+            span #[i.fa.fa-thumbs-up] Like
+          if contest.author && contest.author.id == currentUser.id
+            | 
+            a.btn.btn-outline-secondary(href=`/contests/${contest.id}/edit`) Edit
+            | 
+            a.btn.btn-outline-danger.need-confirm-btn(href=`/contests/${contest.id}?_method=delete`) Delete
+      
+    if contest.numAnswers > 0
+      hr
+      h3 #{contest.numAnswers} Answer(s)
+      .answers.show
+        each answer in answers
+          include _answer
+
+    if currentUser
+      form(action=`/contests/${contest.id}/answers`, method='POST')
+        .form-group
+          label(for='answer') Your Answer
+          textarea.form-control(name="content", rows="5")
+        button.btn.btn-primary(type="submit") Post Your Answer
+
+
+  script(src='/javascripts/contest_client.js')
