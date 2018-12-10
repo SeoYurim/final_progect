@@ -3,6 +3,7 @@
   each tag in contest.tags
     span.badge.badge-phill.badge-secondary= tag
     | 
+
 .row
   .col-sm
     .numbers.
@@ -11,7 +12,7 @@
       #[span.number.num-reads= contest.numReads] reads
   .col-sm
     .author
-      | asked on #{moment(contest.createdAt).format('YYYY-MM-DD')}
+      | posted on #{moment(contest.createdAt).format('YYYY-MM-DD')}
       if contest.author
         | 
         | by #[a(href=`/users/${contest.author.id}`)= contest.author.name] 

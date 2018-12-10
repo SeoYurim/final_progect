@@ -7,91 +7,71 @@ script(src='//cdn.ckeditor.com/4.11.1/standard/ckeditor.js')
   input.form-control(type="text", name="sponsor", placeholder="Sponsor", value=contest.sponsor)
 
 .form-group
-  lable(for="content") 세부정보
-  textarea#editor1
+  label(for="intro") 요약
+  textarea.form-control(name="intro", rows="5")= contest.intro
+
+.form-group
+  lable(for="details") 세부정보
+  textarea#details
   script.
-    CKEDITOR.replace( 'editor1',{
+    CKEDITOR.replace( 'details',{
       filebrowserUploadUrl:'/upload',
     });
 
 .form-group
-  label(for="contest") 공모요강
+  label(for="content") 공모요강
   textarea.form-control(name="content", rows="5")= contest.content
+
 .form-group
   label(for="tags") Tags
   input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=contest.tags ? contest.tags.join(" ") : "")
-.form-group
-  label(for="category") 공모분야
-  .custom-checkbox
-  input(type='checkbox', value='1',data='기획/아이디어')
-  label(for='idea') 기획/아이디어
-  .custom-checkbox
-  input(type='checkbox', value='2',data='광고/마케팅')
-  label(for='ad') 광고/마케팅
-  .custom-checkbox
-  input(type='checkbox', value='3',data='영상/UCC/사진')
-  label(for='video') 영상/UCC/사진
-  .custom-checkbox
-  input(type='checkbox', value='4',data='디자인/캐릭터/웹툰')
-  label(for='design') 디자인/캐릭터/웹툰
-  .custom-checkbox
-  input(type='checkbox', value='5',data='웹/모바일/플래시')
-  label(for='web') 웹/모바일/플래시
-  .custom-checkbox
-  input(type='checkbox', value='6',data='문학/글/시나리오')
-  label(for='senario') 문학/글/시나리오
-  .custom-checkbox
-  input(type='checkbox', value='7',data='게임/소프트웨어')
-  label(for='sw') 게임/소프트웨어
 
 .form-group
-  label(for="period") 접수기간
-  .container
-  .row
-    .col-sm-6
-      .form-group
-        #datetimepicker1.input-group.date
-          input.form-control(type='text')
-          span.input-group-addon
-            span.glyphicon.glyphicon-calendar
-    script(type='text/javascript').
-      $(function () {
-      $('#datetimepicker1').datetimepicker();
-      });
+  label(for="category") 공모분야
+  br
+  input(type='radio',name='area', value='1',data='기획/아이디어')
+  label(for='idea') 기획/아이디어
+  br
+  input(type='radio',name='area', value='2',data='광고/마케팅')
+  label(for='ad') 광고/마케팅
+  br
+  input(type='radio',name='area', value='3',data='영상/UCC/사진')
+  label(for='video') 영상/UCC/사진
+  br
+  input(type='radio',name='area', value='4',data='디자인/캐릭터/웹툰')
+  label(for='design') 디자인/캐릭터/웹툰
+  br
+  input(type='radio',name='area', value='5',data='웹/모바일/플래시')
+  label(for='web') 웹/모바일/플래시
+  br
+  input(type='radio',name='area', value='6',data='문학/글/시나리오')
+  label(for='senario') 문학/글/시나리오
+  br
+  input(type='radio',name='area', value='7',data='게임/소프트웨어')
+  label(for='sw') 게임/소프트웨어
 
 link(rel='stylesheet', href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css')
 script(src='//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
 script(src='//code.jquery.com/ui/1.8.18/jquery-ui.min.js')
 script.
   $(function() {
-  $("#datepicker1, #datepicker2").datepicker({
+  $("#startdate, #enddate").datepicker({
   dateFormat: 'yy.mm.dd'
   });
   });
-p
-  | 접수기간:
-  input#datepicker1(type='text')
+
+.form-group
+  lable(for="Period") 접수기간
+  input#startdate(type='text', placeholder='접수시작 날짜', value=contest.start)
   |  ~
-  input#datepicker2(type='text')
-
-form(action='/action_page.php')
-  | Birthday:
-  input(type='date', name='bday')
-  input(type='submit')
-
-.filebox
-  label(for='ex_file') 업로드
-  input#ex_file(type='file')
+  input#enddate(type='text', placeholder='접수마감 날짜', value=contest.end)
 
 
 .form-group
-  label(for='Input') 파일첨부
-  input#fileInput.form-control(filestyle='', type='file', data-class-button='btn btn-default', data-class-input='form-control', data-button-text='', data-icon-name='fa fa-upload', tabindex='-1', style='position: absolute; clip: rect(0px 0px 0px 0px);')
-  .bootstrap-filestyle.input-group
-    input#userfile.form-control(type='text', name='userfile', disabled='')
-    span.group-span-filestyle.input-group-btn(tabindex='0')
-      label.btn.btn-default(for='fileInput')
-        span.glyphicon.fa.fa-upload
+  label(for='InputFile') 포스터첨부
+  br
+  input#ex_file(type='file', name='poster', value=contest.file)
+
 hr
 .form-group
   label(for="host") 담당자
@@ -99,3 +79,6 @@ hr
 .form-group
   label(for="contact") 연락처
   input.form-control(type="text", name="contact", placeholder="Contact", value=contest.contact)
+.form-group
+  label(for="contact_email") 이메일
+  input.form-control(type="text", name="contact_email", placeholder="Contact_Email", value=contest.contact_email)

@@ -25,7 +25,17 @@ router.get('/', catchErrors(async (req, res, next) => {
   if (term) {
     query = {$or: [
       {title: {'$regex': term, '$options': 'i'}},
-      {content: {'$regex': term, '$options': 'i'}}
+      {content: {'$regex': term, '$options': 'i'}},
+      {sponsor: {'$regex': term, '$options': 'i'}},
+      {intro: {'$regex': term, '$options': 'i'}},
+      {details: {'$regex': term, '$options': 'i'}},
+      {category: {'$regex': term, '$options': 'i'}},
+      {start: {'$regex': term, '$options': 'i'}},
+      {end: {'$regex': term, '$options': 'i'}},
+      {file: {'$regex': term, '$options': 'i'}},
+      {host: {'$regex': term, '$options': 'i'}},
+      {contact: {'$regex': term, '$options': 'i'}},
+      {contact_email: {'$regex': term, '$options': 'i'}},
     ]};
   }
   const contests = await Contest.paginate(query, {
@@ -63,7 +73,17 @@ router.put('/:id', catchErrors(async (req, res, next) => {
   }
   contest.title = req.body.title;
   contest.content = req.body.content;
-  contest.tags = req.body.tags.split(" ").map(e => e.trim());
+  contest.tags = req.body.tags;
+  sponsor: req.body.sponsor;
+  intro: req.body.intro;
+  details: req.body.details;
+  start: req.body.start;
+  end: req.body.end;
+  category: req.body.category;
+  file: req.body.file;
+  host: req.body.host;
+  contact: req.body.contact;
+  contact_email: req.body.contact_email;
 
   await contest.save();
   req.flash('success', 'Successfully updated');
@@ -82,7 +102,17 @@ router.post('/', needAuth, catchErrors(async (req, res, next) => {
     title: req.body.title,
     author: user._id,
     content: req.body.content,
-    tags: req.body.tags.split(" ").map(e => e.trim()),
+    tags: req.body.tags,
+    sponsor: req.body.sponsor,
+    intro: req.body.intro,
+    details: req.body.details,
+    start: req.body.start,
+    end: req.body.end,
+    category: req.body.category,
+    file: req.body.file,
+    host: req.body.host,
+    contact: req.body.contact,
+    contact_email: req.body.contact_email
   });
   await contest.save();
   req.flash('success', 'Successfully posted');

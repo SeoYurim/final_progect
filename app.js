@@ -1,17 +1,19 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var sassMiddleware = require('node-sass-middleware');
-var passport = require('passport');
-var mongoose   = require('mongoose');
-var passportConfig = require('./lib/passport-config');
 var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var sassMiddleware = require('node-sass-middleware');
 var session = require('express-session');
 var methodOverride = require('method-override');
 var flash = require('connect-flash');
+var mongoose   = require('mongoose');
+var passport = require('passport');
+
+var passportConfig = require('./lib/passport-config');
+
 
 var index = require('./routes/index');
 var users = require('./routes/users');
