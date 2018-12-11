@@ -10,6 +10,19 @@ block hero-unit
         .intro-heading.text-uppercase 세 모 공
 
 block content
-  .container
-    
-        
+  h1 Slideshow
+  .slideshow
+    img.active(src='images/001.png')
+    img(src='images/002.png')
+    img(src='image/003.png')
+    img(src='image/004.png')
+    img(src='image/005.png')
+  .indicator
+    ul
+      li.active
+      li
+      li
+      li
+      li
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+  script(src='slideshow.js')

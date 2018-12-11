@@ -74,16 +74,16 @@ router.put('/:id', catchErrors(async (req, res, next) => {
   contest.title = req.body.title;
   contest.content = req.body.content;
   contest.tags = req.body.tags;
-  sponsor: req.body.sponsor;
-  intro: req.body.intro;
-  details: req.body.details;
-  start: req.body.start;
-  end: req.body.end;
-  category: req.body.category;
-  file: req.body.file;
-  host: req.body.host;
-  contact: req.body.contact;
-  contact_email: req.body.contact_email;
+  contest.sponsor= req.body.sponsor;
+  contest.intro= req.body.intro;
+  contest.details= req.body.details;
+  contest.start= req.body.start;
+  contest.end= req.body.end;
+  contest.category= req.body.category;
+  contest.file= req.body.file;
+  contest.host= req.body.host;
+  contest.contact= req.body.contact;
+  contest.contact_email= req.body.contact_email;
 
   await contest.save();
   req.flash('success', 'Successfully updated');
